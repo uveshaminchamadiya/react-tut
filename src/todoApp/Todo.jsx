@@ -6,7 +6,10 @@ const Todo = () => {
     const [todos, setTodos] = useState([]);
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
+    const [showEditModal, setShowEditModal] = useState(false);
     const [showDeleteModal, setShowDeleteModal] = useState(false);
+    const [editedTitle, setEditedTitle] = useState('');
+    const [editedDescription, setEditedDescription] = useState('');
     const [currentTodoId, setCurrentTodoId] = useState(null);
 
     const addTodo = () => {
@@ -22,15 +25,36 @@ const Todo = () => {
         }
     };
 
+    const editTodo = (id, updatedTitle, updatedDescription) => {
+        const updatedTodos = todos.map((todo) =>
+            todo.id === id ? { ...todo, title: updatedTitle, description: updatedDescription } : todo
+        );
+        setTodos(updatedTodos);
+        setShowEditModal(false);
+    };
+
     const deleteTodo = (id) => {
         const updatedTodos = todos.filter((todo) => todo.id !== id);
         setTodos(updatedTodos);
         setShowDeleteModal(false);
     };
 
+    const handleEditClick = (todo) => {
+        setCurrentTodoId(todo.id);
+        setEditedTitle(todo.title);
+        setEditedDescription(todo.description);
+        setShowEditModal(true);
+    };
+
     const handleDeleteClick = (id) => {
         setCurrentTodoId(id);
         setShowDeleteModal(true);
+    };
+
+    const handleSaveEdit = () => {
+        if (currentTodoId !== null) {
+            editTodo(currentTodoId, editedTitle, editedDescription);
+        }
     };
 
     const handleConfirmDelete = () => {
@@ -77,7 +101,7 @@ const Todo = () => {
                         <p>{todo.description}</p>
                     </Col>
                     <Col xs={6} className="text-end">
-                        <Button variant="warning" className="me-2">
+                        <Button variant="warning" className="me-2" onClick={() => handleEditClick(todo)}>
                             <FaEdit />
                         </Button>
                         <Button variant="danger" onClick={() => handleDeleteClick(todo.id)}>
@@ -86,6 +110,42 @@ const Todo = () => {
                     </Col>
                 </Row>
             ))}
+
+            {/* Edit Modal */}
+            <Modal show={showEditModal} onHide={() => setShowEditModal(false)}>
+                <Modal.Header closeButton>
+                    <Modal.Title>Edit Todo</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <Form>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Title</Form.Label>
+                            <Form.Control
+                                type="text"
+                                value={editedTitle}
+                                onChange={(e) => setEditedTitle(e.target.value)}
+                            />
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control
+                                as="textarea"
+                                rows={3}
+                                value={editedDescription}
+                                onChange={(e) => setEditedDescription(e.target.value)}
+                            />
+                        </Form.Group>
+                    </Form>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={() => setShowEditModal(false)}>
+                        Close
+                    </Button>
+                    <Button variant="primary" onClick={handleSaveEdit}>
+                        Save Changes
+                    </Button>
+                </Modal.Footer>
+            </Modal>
 
             {/* Delete Confirmation Modal */}
             <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
