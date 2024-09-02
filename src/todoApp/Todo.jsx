@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Button, Modal, Form, Container, Row, Col } from 'react-bootstrap';
 import { FaEdit, FaTrashAlt } from 'react-icons/fa';
+import EmojiPicker from 'emoji-picker-react';
 
 const Todo = () => {
     const [todos, setTodos] = useState([]);
@@ -63,6 +64,17 @@ const Todo = () => {
         }
     };
 
+    // Emoji 
+    const [showPicker, setShowPicker] = useState(false);
+    const [hovered, setHovered] = useState(false);
+    const [text, setText] = useState('');
+
+    const onEmojiClick = (emojiData) => {
+        const newText = text.replace(/[\p{Emoji}]/gu, '')
+        setText(newText + emojiData.emoji);
+        setShowPicker(false);
+    };
+
     return (
         <Container>
             <h2 className="text-center my-4">Task Manager</h2>
@@ -97,7 +109,24 @@ const Todo = () => {
             {todos.map((todo) => (
                 <Row className="align-items-center mb-3" key={todo.id}>
                     <Col xs={6}>
-                        <h5>{todo.title}</h5>
+                        <h5 onMouseEnter={() => setHovered(true)}
+                            onMouseLeave={() => setHovered(false)}>
+                            {todo.title}
+                            {' '+ text}
+                            <span
+                                onClick={() => setShowPicker(!showPicker)}
+                                style={{ cursor: 'pointer' }}
+                            >
+                                {hovered && (
+                                    <>
+                                        <span style={{ marginLeft: '5px', opacity: '0.5' }} >
+                                            &#128522;
+                                        </span>
+                                    </>
+                                )}
+                            </span>
+                            {showPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
+                        </h5>
                         <p>{todo.description}</p>
                     </Col>
                     <Col xs={6} className="text-end">
