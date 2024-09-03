@@ -13,12 +13,17 @@ const Todo = () => {
     const [editedDescription, setEditedDescription] = useState('');
     const [currentTodoId, setCurrentTodoId] = useState(null);
 
+    const [showPicker, setShowPicker] = useState(false);
+    const [hoveredTodoId, setHoveredTodoId] = useState(null);
+    const [currentEmojiTodoId, setCurrentEmojiTodoId] = useState(null);
+
     const addTodo = () => {
         if (title && description) {
             const newTodo = {
                 id: Date.now(),
                 title,
                 description,
+                emoji: '', 
             };
             setTodos([...todos, newTodo]);
             setTitle('');
@@ -64,14 +69,11 @@ const Todo = () => {
         }
     };
 
-    // Emoji 
-    const [showPicker, setShowPicker] = useState(false);
-    const [hovered, setHovered] = useState(false);
-    const [text, setText] = useState('');
-
     const onEmojiClick = (emojiData) => {
-        const newText = text.replace(/[\p{Emoji}]/gu, '')
-        setText(newText + emojiData.emoji);
+        const updatedTodos = todos.map((todo) =>
+            todo.id === currentEmojiTodoId ? { ...todo, emoji: emojiData.emoji } : todo
+        );
+        setTodos(updatedTodos);
         setShowPicker(false);
     };
 
@@ -109,23 +111,27 @@ const Todo = () => {
             {todos.map((todo) => (
                 <Row className="align-items-center mb-3" key={todo.id}>
                     <Col xs={6}>
-                        <h5 onMouseEnter={() => setHovered(true)}
-                            onMouseLeave={() => setHovered(false)}>
-                            {todo.title}
-                            {' '+ text}
+                        <h5
+                            onMouseEnter={() => setHoveredTodoId(todo.id)}
+                            onMouseLeave={() => setHoveredTodoId(null)}
+                        >
+                            {todo.title} {' ' + todo.emoji}
                             <span
-                                onClick={() => setShowPicker(!showPicker)}
+                                onClick={() => {
+                                    setCurrentEmojiTodoId(todo.id);
+                                    setShowPicker(!showPicker);
+                                }}
                                 style={{ cursor: 'pointer' }}
                             >
-                                {hovered && (
-                                    <>
-                                        <span style={{ marginLeft: '5px', opacity: '0.5' }} >
-                                            &#128522;
-                                        </span>
-                                    </>
+                                {hoveredTodoId === todo.id && (
+                                    <span style={{ marginLeft: '5px', opacity: '0.5' }}>
+                                        &#128522;
+                                    </span>
                                 )}
                             </span>
-                            {showPicker && <EmojiPicker onEmojiClick={onEmojiClick} />}
+                            {showPicker && currentEmojiTodoId === todo.id && (
+                                <EmojiPicker onEmojiClick={onEmojiClick} />
+                            )}
                         </h5>
                         <p>{todo.description}</p>
                     </Col>
