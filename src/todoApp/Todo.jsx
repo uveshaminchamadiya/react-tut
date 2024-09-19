@@ -35,6 +35,7 @@ const Todo = () => {
         const updatedTodos = todos.map((todo) =>
             todo.id === id ? { ...todo, title: updatedTitle, description: updatedDescription } : todo
         );
+        console.log("updatedTodos: ", updatedTodos);
         setTodos(updatedTodos);
         setShowEditModal(false);
     };

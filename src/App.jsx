@@ -1,11 +1,12 @@
 import React from 'react';
-import Todo from './todoApp/Todo';
+import ListOfItems from './props/deleteItem/app';
+;
 
 
 const App = () => {
   return (
     <div>
-      <Todo />
+      <ListOfItems />
     </div>
   );
 };
