@@ -1,5 +1,7 @@
 import { useState } from "react";
 import DeleteItem from "./delete";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
 const ListOfItems = () => {
   const [items, setItems] = useState([
@@ -7,23 +9,24 @@ const ListOfItems = () => {
     { id: 2, name: "Pens" },
     { id: 3, name: "Notebooks" },
     { id: 4, name: "Colors" },
-    { id: 4, name: "Toys" },
+    { id: 5, name: "Toys" },
   ]);
 
   const handleDelete = (item) => {
-    if (confirm(`Do you want to delete ${item.name}?`)) {
-      setItems((prevItems) => prevItems.filter((i) => i.id !== item.id));
-    }
+    setItems((prevItems) => prevItems.filter((i) => i.id !== item.id));
+    toast.success(`${item.name} deleted successfully!`);
   };
 
+  const handleCancel = () => {
+    toast.warning("Operation canceled!");
+  };
 
   return (
     <div>
-      <DeleteItem items={items} onDelete={handleDelete} />
+      <DeleteItem items={items} onDelete={handleDelete} onCancel={handleCancel} />
+      <ToastContainer />
     </div>
   );
 };
 
 export default ListOfItems;
-
-
