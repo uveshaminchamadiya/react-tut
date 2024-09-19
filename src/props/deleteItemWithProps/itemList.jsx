@@ -1,5 +1,5 @@
 import { useState } from "react";
-import DeleteItem from "./delete";
+import DeleteItem from "./deleteItem";
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -14,7 +14,7 @@ const ListOfItems = () => {
 
   const handleDelete = (item) => {
     setItems((prevItems) => prevItems.filter((i) => i.id !== item.id));
-    toast.success(`${item.name} deleted successfully!`);
+    toast.success(`Item Deleted successfully!`);
   };
 
   const handleCancel = () => {

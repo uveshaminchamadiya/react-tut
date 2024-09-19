@@ -1,5 +1,6 @@
 import React from 'react';
-import ListOfItems from './props/deleteItem/app';
+import ListOfItems from './props/deleteItemWithProps/itemList';
+
 ;
 
 
