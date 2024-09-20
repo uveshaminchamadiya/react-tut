@@ -1,13 +1,12 @@
 import React from 'react';
-import ListOfItems from './props/deleteItemWithProps/itemList';
+import GenrateInput from './components/genrateInput';
 
-;
 
 
 const App = () => {
   return (
     <div>
-      <ListOfItems />
+      <GenrateInput />
     </div>
   );
 };
