@@ -1,14 +1,24 @@
-import React from 'react';
-import GenrateInput from './components/genrateInput';
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import ProductList from "./route/productList"
+import ProductDetails from "./route/productDetails"
 
+function App() {
+  const router = createBrowserRouter([
+    {
+      path: "/",
+      element: <ProductList />,
+    },
+    {
+      path: "/:slug/productDetails/:id",
+      element: <ProductDetails />,
+    }
+  ]);
 
-
-const App = () => {
   return (
-    <div>
-      <GenrateInput />
-    </div>
+    <>
+      <RouterProvider router={router} />
+    </>
   );
-};
+}
 
 export default App;
