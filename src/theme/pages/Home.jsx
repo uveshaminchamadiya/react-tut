@@ -1,0 +1,16 @@
+import Header from "../components/Header/Header";
+
+const Home = () => {
+  return (
+    <>
+      <Header />
+      <section style={{padding: "10px"}}>
+        <h2>Home</h2>
+        <br />
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia dolore consequuntur, ratione tempora quae minima id iste consequatur repudiandae, itaque harum. Sunt cumque sed nostrum veritatis esse laborum eos eligendi, dolore eaque iusto ut ea quis dolorum perferendis eius, omnis fugit! Ipsam quod dolorem dicta illum voluptatibus officia iste sapiente dolores amet, necessitatibus, quasi maiores voluptatem, cum excepturi aspernatur. Repudiandae et, laboriosam cumque vero temporibus ipsum incidunt possimus. Culpa quo suscipit expedita vero ducimus aperiam neque illo repudiandae soluta. Vel tempora odio totam nam qui aspernatur ut vero earum iste quod impedit possimus in repudiandae voluptatem minima voluptas aut non at, illo voluptatibus dignissimos numquam! Impedit, laborum praesentium similique perferendis eos ad quia, sequi necessitatibus autem vitae, maxime aliquid odio! Nihil architecto labore cupiditate quia atque laudantium vel iusto numquam illum, optio necessitatibus quos dolorum possimus veniam similique dolores iure placeat velit laboriosam harum. Velit libero exercitationem voluptas aut similique voluptates nisi officiis explicabo dolores quasi fugiat dolore minus molestiae, autem placeat adipisci vitae nobis repudiandae pariatur, in culpa saepe at. Corporis ad, laboriosam deserunt dolorem consequatur quia sed, voluptates ipsum doloremque fuga quam perspiciatis eum qui velit corrupti labore enim ipsa reprehenderit ratione officia architecto. Consequuntur minima eligendi, tenetur dolorum ea consequatur hic itaque pariatur ullam tempore accusantium expedita fugit vel odio nemo ducimus ex libero dolore aspernatur eum quos. Ducimus accusamus excepturi nam, dolor quam illum libero deserunt, quos repellendus sed totam ipsam perspiciatis. Doloribus aut voluptatibus dignissimos rerum odio modi id totam facilis eum optio in repellat molestias, ab omnis quis consequatur deleniti minima labore! Laboriosam aliquam assumenda, maiores placeat doloremque animi nostrum! Repellendus quasi earum nemo aliquam ratione ipsum quo dolores veniam dicta sequi non doloribus perspiciatis excepturi maxime ipsa facere, corporis eligendi reiciendis? Illum placeat recusandae cupiditate voluptatum consequatur, quas id odit esse at vitae et veniam enim voluptas a architecto porro fuga voluptatibus nihil optio itaque, delectus dolor error libero! Aspernatur, perferendis quo? Deserunt, quam amet doloremque ex delectus fugit, provident autem obcaecati animi placeat fugiat eveniet minus consectetur harum in? Tempora, harum natus consequatur cum sed optio. Fugit, error vero. Nemo at ipsum similique minima, vel obcaecati laboriosam magnam voluptatibus eligendi quaerat beatae fugiat natus, quam ut, cum eaque veritatis dicta? Eligendi dolore ex quos ea alias aspernatur obcaecati earum totam officia, quia nulla voluptas harum asperiores. Pariatur eum explicabo necessitatibus a perferendis ad quam non quas fugit voluptatum, possimus nemo. Dolorum, quae.</p>
+      </section>
+    </>
+  );
+};
+
+export default Home;
