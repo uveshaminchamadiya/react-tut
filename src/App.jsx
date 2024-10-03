@@ -1,22 +1,12 @@
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import ProductList from "./route/productList"
-import ProductDetails from "./route/productDetails"
+import ComposeProvider from "./theme2/context/ComposeProvider";
+import Home from "./theme2/pages/Home";
 
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <ProductList />,
-    },
-    {
-      path: "/:slug/productDetails/:id",
-      element: <ProductDetails />,
-    }
-  ]);
-
   return (
     <>
-      <RouterProvider router={router} />
+      <ComposeProvider>
+        <Home />
+      </ComposeProvider>
     </>
   );
 }
